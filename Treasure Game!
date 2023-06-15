@@ -1,0 +1,46 @@
+print('''
+*******************************************************************************
+          |                   |                  |                     |
+ _________|________________.=""_;=.______________|_____________________|_______
+|                   |  ,-"_,=""     `"=.|                  |
+|___________________|__"=._o`"-._        `"=.______________|___________________
+          |                `"=._o`"=._      _`"=._                     |
+ _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
+|                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
+|___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
+          |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
+ _________|___________| ;`-.o`"=._; ." ` '`."\` . "-._ /_______________|_______
+|                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |
+|___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
+____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
+/______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
+____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
+/______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
+____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
+/______/______/______/______/______/______/______/______/______/______/_____ /
+*******************************************************************************
+''')
+print("Welcome to Treasure Island.")
+print("Your mission is to find the treasure.")
+
+choice1 = input('You are walking along a road for two hours seeking a person that was known to have stolen a banks treasure. It finally comes to a T intersection. Will you go "left" or "right?"').lower()
+if choice1 == 'left':
+    choice2 = input('You walked down the road and you found a house that looks abandonded. You walk to the front door and open it. You see a long hallway with one door on the right labeled door1 and one door on the left labeled door2. Which one do you pick? "door1" or "door2"').lower()
+    if choice2 == 'door1':
+        choice3 = input('You walked through the door and found a Glock43x with a light attached. do you take it? "yes" or "no"').lower()
+        if choice3 == 'yes':
+            choice4 = input('You picked up the weapon and left the room you came into. It seems you didnt see the baby gate blocking the hallway. The only option is to leave the house or enter door2. Will you "leave" or "enter door2"').lower()
+            if choice4 == 'enter door2':
+                choice5 = input('there is a person there with a gun pointing it at you guarding a large chest of something hidden. Do you "shoot" or "run"').lower()
+                if choice5 == 'shoot':
+                     print('CONGRATS! YOU GOT THE TREASURE HE WAS HIDING!!!!')
+                else:
+                    print('GAME OVER YOU WERE SHOT.')
+            else:
+                print('There was a person with a pistol and he shot you.')
+        else:
+            print('The person hiding inside the room of door2 shot you for intruding. GAME OVER')
+    else:
+        print('The person you didnt know about came in the house and shot you for breaking and entering. GAME OVER')
+else:
+    print('You got hit by a car. GAME OVER')
