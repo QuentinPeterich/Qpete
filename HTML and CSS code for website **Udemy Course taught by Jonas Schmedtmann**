@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <title>The Basic Language of the Web: HTML</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      /* This is the very first thing he does when starting a new project ^^^^ then he goes to each section and gives them padding and margins */
+
+      /* PAGE SECTIONS  */
+      body {
+        font-family: sans-serif;
+        color: #444;
+        border-top: 10px solid #1098ad;
+        position: relative;
+      }
+
+      .container {
+        width: 700px;
+        /* margin-left: auto;
+        margin-right: auto; */
+        margin: 0 auto;
+        /* position: relative; */
+      }
+      .main-header {
+        background-color: #f7f7f7;
+        /* padding: 20px;
+        padding-left: 40px;
+        padding-right: 40px; */
+        padding: 20px 40px;
+        margin-bottom: 60px;
+        /* height: 80px; */
+      }
+      .post-header {
+        margin-bottom: 40px;
+      }
+      nav {
+        font-size: 18px;
+      }
+
+      article {
+        margin-bottom: 60px;
+      }
+
+      aside {
+        background-color: #f7f7f7;
+        border-top: 5px solid #1098ad;
+        border-bottom: 5px solid #1098ad;
+        padding: 50px 0;
+        width: 500px;
+      }
+
+      /* SMALLER ELEMENTS  */
+
+      h1,
+      h2,
+      h3 {
+        color: #1098ad;
+      }
+      h1 {
+        font-size: 26px;
+        text-transform: uppercase;
+        font-style: italic;
+      }
+      h2 {
+        font-size: 40px;
+        margin-bottom: 30px;
+      }
+      h3 {
+        font-size: 30px;
+        margin-bottom: 20px;
+        margin-top: 40px;
+      }
+      h4 {
+        font-size: 20px;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      p {
+        font-size: 22px;
+        line-height: 1.5;
+        margin-bottom: 15px;
+      }
+
+      ul,
+      ol {
+        margin-left: 50px;
+        margin-bottom: 20px;
+      }
+
+      li {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      li:last-child {
+        margin-bottom: 0;
+      }
+
+      /* footer p {
+        font-size: 16px;
+      } */
+
+      /* article header p {
+        font-style: italic;
+      } */
+
+      #author {
+        font-style: italic;
+        font-size: 18px;
+      }
+      /* you should try and not use ID's. use classes instead because classes can be used more than once  */
+      #copyright {
+        font-size: 16px;
+      }
+
+      .related-author {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .related {
+        list-style: none;
+      }
+
+      li:first-child {
+        font-weight: bold;
+      }
+
+      li:last-child {
+        font-style: italic;
+      }
+      /* li:nth-child() {
+        color: red;
+      } */
+      /* This will only work if the p was the first child of the article  */
+      /* article p:first-child {
+        color: red;
+      } */
+
+      /* Misconception: this wont work */
+      /* article p:first-child {
+        color: red;
+      } */
+
+      /* STYLING LINKS */
+
+      a:link {
+        color: #1098ad;
+        text-decoration: none;
+      }
+      a:visited {
+        color: #1098ad;
+      }
+
+      a:hover {
+        color: orangered;
+        font-weight: bold;
+        text-decoration: underline orangered;
+      }
+
+      a:active {
+        background-color: black;
+        font-style: italic;
+      }
+
+      .post-img {
+        width: 100%;
+        height: auto;
+      }
+
+      nav a:link {
+        /* background-color: orangered;
+        margin: 20px;
+        padding: 20px;
+        display: block; */
+        margin-right: 30px;
+        margin-top: 10px;
+        display: inline-block;
+      }
+
+      nav a:link:last-child {
+        margin-right: 0;
+      }
+
+      button {
+        font-size: 22px;
+        padding: 20px;
+        cursor: pointer;
+        position: absolute;
+        /* top: 50px;
+        left: 50px; */
+        bottom: 50px;
+        right: 50px;
+      }
+
+      h1::first-letter {
+        font-style: normal;
+        margin-right: 5px;
+      }
+      /* changes the color of every first line for a paragraph */
+      /* this targets all of the paragraphs after the h3's h3 +
+       p::firs-line */
+      /* p::first-line {
+        /* color: red; */
+      h2 {
+        /* background-color: orange; */
+        position: relative;
+      }
+
+      h2::after {
+        content: "TOP";
+        background-color: #ffe70e;
+        font-size: 16px;
+        color: #000;
+        font-weight: bold;
+        display: inline-block;
+        padding: 5px 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      /* LVHA
+      
+      /* #copyright {
+        color: red;
+      } */
+      /* .copyright {
+        color: blue;
+      } */
+      /* .text {
+        color: yellow;
+      } */
+
+      /* even though the footer p is the last in priority, you can add !important to make it the highest priority */
+
+      /* footer p {
+        color: green;
+      } */
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="main-header">
+        <h1>📘 The Code Magazine</h1>
+
+        <nav>
+          <a href="blog.html">Blog</a>
+          <a href="#">Challenges</a>
+          <a href="#">Flexbox</a>
+          <a href="#">CSS Grid</a>
+        </nav>
+      </header>
+
+      <article>
+        <header class="post-header">
+          <h2>The Basic Language of the Web: HTML</h2>
+
+          <img
+            src="img/laura-jones.jpg"
+            alt="Headshot of Laura Jones"
+            height="50"
+            width="50"
+          />
+
+          <p id="author">
+            Posted by <strong>Laura Jones</strong> on Monday, June 21st 2027
+          </p>
+
+          <img
+            src="img/post-img.jpg"
+            alt="HTML code on a screen"
+            width="500"
+            height="200"
+            class="post-img"
+          />
+          <button>❤️ Like</button>
+        </header>
+        <p>
+          All modern websites and web applications are built using three
+          <em>fundamental</em>
+          technologies: HTML, CSS and JavaScript. These are the languages of the
+          web.
+        </p>
+
+        <p>
+          In this post, let's focus on HTML. We will learn what HTML is all
+          about, and why you too should learn it.
+        </p>
+
+        <h3>What is HTML?</h3>
+        <p>
+          HTML stands for <strong>H</strong>yper<strong>T</strong>ext
+          <strong>M</strong>arkup <strong>L</strong>anguage. It's a markup
+          language that web developers use to structure and describe the content
+          of a webpage (not a programming language).
+        </p>
+        <p>
+          HTML consists of elements that describe different types of content:
+          paragraphs, links, headings, images, video, etc. Web browsers
+          understand HTML and render HTML code as websites.
+        </p>
+        <p>In HTML, each element is made up of 3 parts:</p>
+
+        <ol>
+          <li class="first-li">The opening tag</li>
+          <li>The closing tag</li>
+          <li>The actual element</li>
+        </ol>
+
+        <p>
+          You can learn more at
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+            target="_blank"
+            >MDN Web Docs</a
+          >.
+        </p>
+
+        <h3>Why should you learn HTML?</h3>
+
+        <p>
+          There are countless reasons for learning the fundamental language of
+          the web. Here are 5 of them:
+        </p>
+
+        <ul>
+          <li>To be able to use the fundamental web dev language</li>
+          <li>
+            To hand-craft beautiful websites instead of relying on tools like
+            Worpress or Wix
+          </li>
+          <li>To build web applications</li>
+          <li>To impress friends</li>
+          <li>To have fun 😃</li>
+        </ul>
+
+        <p>Hopefully you learned something new here. See you next time!</p>
+      </article>
+
+      <aside>
+        <h4>Related posts</h4>
+
+        <ul class="related">
+          <li>
+            <img
+              src="img/related-1.jpg"
+              alt="Person programming"
+              width="75"
+              width="75"
+            />
+            <a href="#">How to Learn Web Development</a>
+            <p class="related-author">By Jonas Schmedtmann</p>
+          </li>
+          <li>
+            <img
+              src="img/related-2.jpg"
+              alt="Lightning"
+              width="75"
+              heigth="75"
+            />
+            <a href="#">The Unknown Powers of CSS</a>
+            <p class="related-author">By Jim Dillon</p>
+          </li>
+          <li>
+            <img
+              src="img/related-3.jpg"
+              alt="JavaScript code on a screen"
+              width="75"
+              height="75"
+            />
+            <a href="#">Why JavaScript is Awesome</a>
+            <p class="related-author">By Matilda</p>
+          </li>
+        </ul>
+      </aside>
+      <!-- You can add multiple classes by just adding a space. However, the last class will be the last one noted will be applied  -->
+      <footer>
+        <p id="copyright" class="copyright text">
+          Copyright &copy; 2027 by The Code Magazine.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
