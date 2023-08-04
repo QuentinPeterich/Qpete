@@ -1,0 +1,11 @@
+public enum Majors {
+    PHYSICS,
+    COMPUTERSCIENCE,
+    LIBERALARTS,
+    COMMUNICATIONS,
+    BUSINESS,
+    OTHER,
+    UNDECIDED,
+    CLOUDCOMPUTING
+
+}

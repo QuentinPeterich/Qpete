@@ -1,0 +1,6 @@
+
+7
+java:S1643Y"Use a StringBuilder instead.(Ž³þ»ÿÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(¸£èÁ
+o
+java:S3012="YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(æ°Þ›
