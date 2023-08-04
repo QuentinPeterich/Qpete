@@ -5,6 +5,7 @@ public class BST {
     //methods
 
     //algorithms
+    // CountNodes
     public int CountNodes() // running time O(n)
     {
         return CountNodesHelper(root);
@@ -40,6 +41,45 @@ public class BST {
         {
             return CountLeafNodesHelper(current.left) + CountLeafNodesHelper(current.right);
         }
+    }
+
+    // FindHeight
+    public int FindHeight()
+    {
+        return FindHeightHelper(root);
+    }
+
+    public int FindHeightHelper(Node current)
+    {
+        if(current == null)
+        {
+            return -1;
+        } else
+        {
+            return Math.max(FindHeightHelper(current.left),
+                            FindHeightHelper(current.right)) + 1;
+        }
+    }
+
+
+    // sum of all values
+    public int NumberOfAllLetters() // running time O(n)
+    {
+        return NumberOfAllLettersHelper(root);
+    }
+
+    public int NumberOfAllLettersHelper(Node current)
+    {
+     if(current == null)
+     {
+         return 0;
+     } else
+     {
+        // divide and conquer
+         return current.value.length() + // will get the length of the value of the current pointer
+        NumberOfAllLettersHelper(current.left) + // then it will move to the left of the current
+        NumberOfAllLettersHelper(current.right); // then it will move to the right of the current and then restart the method
+     }
     }
 
 
