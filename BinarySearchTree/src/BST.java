@@ -3,21 +3,62 @@ public class BST {
     Node root;
 
     //methods
+
+    //algorithms
+    public int CountNodes() // running time O(n)
+    {
+        return CountNodesHelper(root);
+    }
+
+    public int CountNodesHelper(Node current) // running time O(n)
+    {
+        if(current != null)
+        {
+            return CountNodesHelper(current.left) + CountNodesHelper(current.right) + 1; // get the number of nodes on the left side, then the right side then add 1 for the root
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    // CountLeafNodes (nodes that do not have children)
+    public int CountLeafNodes()
+    {
+        return CountLeafNodesHelper(root);
+    }
+
+    public int CountLeafNodesHelper(Node current) // running time O(n)
+    {
+        if(current == null)
+        {
+            return 0;
+        } else if(current.left == null && current.right == null)
+        {
+            return 1;
+        } else
+        {
+            return CountLeafNodesHelper(current.left) + CountLeafNodesHelper(current.right);
+        }
+    }
+
+
+
     //Delete - skip
     //Clear
-    public void Clear()
+    public void Clear() // running time O(1)
     {
         root = null;
     }
 
     //IsEmpty
-    public boolean IsEmpty()
+    public boolean IsEmpty() // running time O(1)
     {
         return root == null;
     }
 
     //Search
-    public Node Search(String valueSearched)
+    public Node Search(String valueSearched) // running time O(n)
     {
         Node finger = root;
 
@@ -41,20 +82,20 @@ public class BST {
     }
 
 
-    public boolean Search2(String value)
+    public boolean Search2(String value) // running time is O(n)
     {
-        return Search(value) == null;
+        return Search(value) != null;
     }
 
     //Insert
-    public void Insert(String someValue)
+    public void Insert(String someValue) // running time is O(n)
     {
         Node node = new Node(someValue);//create a new node
 
         if(IsEmpty())
         {
             root = node; //make root point to the new node
-            //root =new Node(someValue);
+            // root =new Node(someValue);
         }
         else
         {
@@ -92,12 +133,87 @@ public class BST {
             }
         }
     }
+    //Max/Min
+    public String Max() throws Exception // running time O(n)
+    {
+        Node finger = root;
+        if(IsEmpty())
+        {
+            throw new Exception("no max in empty tree");
+        }
+        else
+        {
+            while(finger.right != null)
+            {
+                finger = finger.right;
+            }
+
+            //finger now points at right most node
+            return finger.value;
+        }
+    }
+
+    public String Min() throws Exception // running time O(n)
+    {
+        Node finger = root;
+        if(IsEmpty())
+        {
+            throw new Exception("no min in empty tree");
+        }
+        else
+        {
+            while(finger.left != null)
+            {
+                finger = finger.left;
+            }
+
+            //finger now points at left most node
+            return finger.value;
+        }
+    }
+
+
+
 
     //Traversals
+    //PreOrder - NLR
+    public void PreOrder() // running time O(n)
+    {
+        PreOrderHelper(root);
+    }
+    public void PreOrderHelper(Node current) // think of current as "finger" // running time O(n)
+    {
+        if(current != null)
+        {
+            System.out.println(current.value); //L - visit the node
+            PreOrderHelper(current.left); //L - Visit the left subtree
+            PreOrderHelper(current.right); //R - Visit the right subtree
+        }
+    }
+
+    //InOrder - LNR
+    public void InOrder() // running time O(n)
+    {
+        InOrderHelper(root);
+    }
+    public void InOrderHelper(Node current) // think of current as "finger" // running time O(n)
+    {
+        if(current != null)
+        {
+            PreOrderHelper(current.left); //L - Visit the left subtree
+            System.out.println(current.value); //L - visit the node
+            PreOrderHelper(current.right); //R - Visit the right subtree
+        }
+    }
+
+    //PostOrder - LRN
+
+
+
     //CountLeafNodes
     //FindHeight
 
-    //Max/Min
+
 
 
     //ctor
