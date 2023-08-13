@@ -1,3 +1,8 @@
+// Quentin Peterich
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class BST {
     //data
     Node root;
@@ -245,6 +250,89 @@ public class BST {
             PreOrderHelper(current.right); //R - Visit the right subtree
         }
     }
+    // [Problem 1] List of depths
+// This method returns a list of linked lists, where each linked list contains nodes at a specific depth
+    public List<LinkedList<Node>> listOfDepths() {
+        List<LinkedList<Node>> result = new LinkedList<>(); // Final result list
+
+        // Base case: if tree is empty, return empty list
+        if (root == null) return result;
+
+        // Use a queue to perform a breadth-first search (BFS) on the tree
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        // Traverse each level
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            LinkedList<Node> currentLevel = new LinkedList<>();
+
+            for (int i = 0; i < size; i++) {
+                Node current = queue.poll();
+                currentLevel.add(current);
+
+                // Add child nodes to the queue for next level traversal
+                if (current.left != null) queue.add(current.left);
+                if (current.right != null) queue.add(current.right);
+            }
+
+            // Add the current level's nodes to the result list
+            result.add(currentLevel);
+        }
+
+        return result;
+    }
+
+    // Count the number of internal nodes
+// This method returns the count of nodes that aren't leaves
+    public int countInternalNodes() {
+        return countInternalNodesHelper(root);
+    }
+
+    private int countInternalNodesHelper(Node node) {
+        if (node == null) return 0;
+
+        // Check if node has at least one child, then count it as internal
+        int count = (node.left != null || node.right != null) ? 1 : 0;
+
+        // Recursive call on child nodes
+        return count + countInternalNodesHelper(node.left) + countInternalNodesHelper(node.right);
+    }
+
+    //  Determine if there's a path between two nodes
+// This method checks if a path exists between nodes with values value1 and value2
+    public boolean isPathBetweenNodes(String value1, String value2) {
+        Node node1 = Search(value1);
+        Node node2 = Search(value2);
+
+        // If either node isn't in the tree, return false
+        if (node1 == null || node2 == null) return false;
+
+        // Check if node1 is an ancestor of node2 or vice-versa
+        return (isAncestor(root, node1, node2) || isAncestor(root, node2, node1));
+    }
+
+    private boolean isAncestor(Node current, Node parent, Node child) {
+        if (current == null) return false;
+        if (current == parent) return findNode(current, child);
+
+        // Recursive check on left and right subtrees
+        return isAncestor(current.left, parent, child) || isAncestor(current.right, parent, child);
+    }
+
+    // Helper function to find a specific node in a subtree
+    private boolean findNode(Node current, Node target) {
+        if (current == null) return false;
+        if (current == target) return true;
+
+        // Recursive search in left and right subtrees
+        return findNode(current.left, target) || findNode(current.right, target);
+    }
+
+
+
+
+
 
     //PostOrder - LRN
 

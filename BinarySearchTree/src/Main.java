@@ -1,3 +1,4 @@
+// Quentin Peterich
 public class Main {
     public static void main(String[] args) {
 //        Node node = new Node("Chad");
@@ -21,6 +22,18 @@ public class Main {
         System.out.println(tree.CountNodes()); // 9
         System.out.println(tree.FindHeight()); // 46
         System.out.println(tree.NumberOfAllLetters()); // 46
+
+
+//  Number of levels in the tree
+        System.out.println(tree.listOfDepths().size());
+
+//  Number of internal nodes
+        System.out.println(tree.countInternalNodes());
+
+// Check path between nodes
+        System.out.println(tree.isPathBetweenNodes("Chad", "Sage")); // true
+        System.out.println(tree.isPathBetweenNodes("Harry", "Flavia")); // false
+
 
     }
 }

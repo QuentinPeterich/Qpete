@@ -1,3 +1,4 @@
+// Quentin Peterich
 public class Node {
     //data (what data does every node have)
     String value;
