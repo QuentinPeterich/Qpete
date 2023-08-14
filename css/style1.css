@@ -1,0 +1,14 @@
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+table,
+th,
+td {
+  border: 2px solid black;
+}
+
+.grey-background {
+  background-color: grey;
+}
