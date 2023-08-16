@@ -1,106 +1,131 @@
+// Quentin Peterich
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class TicTacToe extends JFrame {
-    // fields
-    JPanel mainPanel = new JPanel(); // this will hold the buttons
+    //fields
+    JPanel mainPanel  = new JPanel();//this will hold the buttons
     JButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
     String currentPlayer = "X";
-    Font font4Buttons = new Font(Font.SERIF, Font.BOLD, 100);
-
-    JMenuBar mainMenu = new JMenuBar();
+    Font font4buttons = new Font(Font.SERIF, Font.BOLD, 100);
+    JMenuBar mainMenu= new JMenuBar();
     JMenu file = new JMenu("File");
     JMenu edit = new JMenu("Edit");
     JMenu help = new JMenu("Help");
 
     JMenuItem reset = new JMenuItem("Reset");
     JMenuItem exit = new JMenuItem("Exit");
-    JMenuItem somethingElse = new JMenuItem("Something Else");
+    JMenuItem somethingElse = new JMenuItem("Something else");
+
+    // player win counter
+    int playerXWins = 0;
+    int playerOWins = 0;
 
 
 
-
-
-
-    // methods
+    //methods
     public void SwitchPlayer()
     {
         if(currentPlayer == "X")
         {
             currentPlayer = "O";
         }
-        else {
+        else
+        {
             currentPlayer = "X";
         }
-//        currentPlayer = (currentPlayer =="X")?"O":"X";
+        //currentPlayer = (currentPlayer=="X")?"O":"X";
     }
 
     public boolean CheckForWinner()
-    {   // check 1st row
+    {
+        //check first row
         if(btn1.getText() == btn2.getText()
                 && btn1.getText() == btn3.getText()
-                 && btn1.getText() != "")
+                && btn1.getText()!="")
             return true;
 
-        // Check for 2nd row
+        //check second row
         if(btn4.getText() == btn5.getText()
                 && btn4.getText() == btn6.getText()
-                && btn4.getText() != "")
+                && btn4.getText()!="")
             return true;
 
-        // Check for the 3rd row
+        //check third row
         if(btn7.getText() == btn8.getText()
                 && btn7.getText() == btn9.getText()
-                && btn7.getText() != "")
+                && btn7.getText()!="")
             return true;
 
-
-        // check 2nd column
+        //check first column
         if(btn1.getText() == btn4.getText()
                 && btn1.getText() == btn7.getText()
-                && btn1.getText() != "")
+                && btn1.getText()!="")
             return true;
 
-        // check for 2nd column
+        //check second column
         if(btn2.getText() == btn5.getText()
                 && btn2.getText() == btn8.getText()
-                && btn2.getText() != "")
+                && btn2.getText()!="")
             return true;
 
-        // check 3rd column
+        //check third column
         if(btn3.getText() == btn6.getText()
                 && btn3.getText() == btn9.getText()
-                && btn3.getText() != "")
+                && btn3.getText()!="")
             return true;
 
-        // check first diag
+        //check first diagonal
         if(btn1.getText() == btn5.getText()
                 && btn1.getText() == btn9.getText()
-                && btn1.getText() != "")
+                && btn1.getText()!="")
             return true;
 
-        // check 2nd diag
+        //check second diagonal
         if(btn3.getText() == btn5.getText()
                 && btn3.getText() == btn7.getText()
-                && btn3.getText() != "")
+                && btn3.getText()!="")
             return true;
 
+        //all else
         return false;
+    }
+    // if all buttons are filled/clicked
+    public boolean allButtonsFilled()
+    { // create an array of all the buttons
+        JButton[] buttons = {btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9};
+        for(JButton btn : buttons)
+        { // loop through the buttons to see if any of them are empty
+            if(btn.getText().equals(""))
+            {
+                return false; // if theres an empty button, return false. not all are filled
+            }
+        }
+        return true; // all buttons are filled
     }
 
 
+
     //click event handler
-    public void ButtonClickHandler(ActionEvent e)
-    {
+    public void ButtonClickHandler(ActionEvent e){
         JButton theButtonClicked = (JButton)e.getSource();
-        theButtonClicked.setEnabled(false); // disable the button once clicked
-        theButtonClicked.setText(currentPlayer); // display x or o on the button
-        theButtonClicked.setBackground(currentPlayer.equals("X")?Color.RED:Color.GREEN);// set color for the button
-        theButtonClicked.setOpaque(true);
-        if(CheckForWinner())
+        theButtonClicked.setEnabled(false); //disable the button that was clicked on
+        theButtonClicked.setText(currentPlayer); //put "X" or "O" ...
+        theButtonClicked.setBackground(currentPlayer.equals("X")?Color.RED:Color.GREEN);//set a background color for the button
+
+        if(CheckForWinner())//do we have a winner
         {
-            JOptionPane.showMessageDialog(null,currentPlayer + " Wins!");
+            if(currentPlayer.equals("X"))
+            {
+                playerXWins++; // increment wins for player X
+            } else {
+                playerOWins++; // increment of wins for player O
+            }
+            JOptionPane.showMessageDialog(this, currentPlayer + " wins!\nTotal wins: \nPlayer X: " + playerXWins + "\nPlayer O: " + playerOWins);//we congratulate the user
 
             //disable all buttons
             btn1.setEnabled(false);
@@ -112,10 +137,11 @@ public class TicTacToe extends JFrame {
             btn7.setEnabled(false);
             btn8.setEnabled(false);
             btn9.setEnabled(false);
-
-
+        } else if (allButtonsFilled()) {
+            // if no winner, check to see if it's a tie
+            JOptionPane.showMessageDialog(this, "It's a tie!"); // display that its a tie
         }
-        SwitchPlayer();
+        SwitchPlayer(); // switch to the next player
     }
 
     public void someMethod()
@@ -123,26 +149,24 @@ public class TicTacToe extends JFrame {
         JOptionPane.showMessageDialog(this, "Hello");
     }
 
-
-    // constructors
-    public TicTacToe()
-    {
+    //ctor(s)
+    public TicTacToe() {
         super();
 
         setContentPane(mainPanel);
 
         //build 9 buttons
-        btn1 = new JButton(); btn1.addActionListener(e -> ButtonClickHandler(e)); btn1.setFont(font4Buttons);
-        btn2 = new JButton(); btn2.addActionListener(e -> ButtonClickHandler(e)); btn2.setFont(font4Buttons);
-        btn3 = new JButton(); btn3.addActionListener(e -> ButtonClickHandler(e)); btn3.setFont(font4Buttons);
-        btn4 = new JButton(); btn4.addActionListener(e -> ButtonClickHandler(e)); btn4.setFont(font4Buttons);
-        btn5 = new JButton(); btn5.addActionListener(e -> ButtonClickHandler(e)); btn5.setFont(font4Buttons);
-        btn6 = new JButton(); btn6.addActionListener(e -> ButtonClickHandler(e)); btn6.setFont(font4Buttons);
-        btn7 = new JButton(); btn7.addActionListener(e -> ButtonClickHandler(e)); btn7.setFont(font4Buttons);
-        btn8 = new JButton(); btn8.addActionListener(e -> ButtonClickHandler(e)); btn8.setFont(font4Buttons);
-        btn9 = new JButton(); btn9.addActionListener(e -> ButtonClickHandler(e)); btn9.setFont(font4Buttons);
+        btn1 = new JButton(); btn1.addActionListener(e -> ButtonClickHandler(e)); btn1.setFont(font4buttons);
+        btn2 = new JButton(); btn2.addActionListener(e -> ButtonClickHandler(e)); btn2.setFont(font4buttons);
+        btn3 = new JButton(); btn3.addActionListener(e -> ButtonClickHandler(e)); btn3.setFont(font4buttons);
+        btn4 = new JButton(); btn4.addActionListener(e -> ButtonClickHandler(e)); btn4.setFont(font4buttons);
+        btn5 = new JButton(); btn5.addActionListener(e -> ButtonClickHandler(e)); btn5.setFont(font4buttons);
+        btn6 = new JButton(); btn6.addActionListener(e -> ButtonClickHandler(e)); btn6.setFont(font4buttons);
+        btn7 = new JButton(); btn7.addActionListener(e -> ButtonClickHandler(e)); btn7.setFont(font4buttons);
+        btn8 = new JButton(); btn8.addActionListener(e -> ButtonClickHandler(e)); btn8.setFont(font4buttons);
+        btn9 = new JButton(); btn9.addActionListener(e -> ButtonClickHandler(e)); btn9.setFont(font4buttons);
 
-        // add them to the main panel
+        //add them to the mainPanel
         mainPanel.add(btn1);
         mainPanel.add(btn2);
         mainPanel.add(btn3);
@@ -153,31 +177,25 @@ public class TicTacToe extends JFrame {
         mainPanel.add(btn8);
         mainPanel.add(btn9);
 
-
         setJMenuBar(mainMenu);
         mainMenu.add(file);
         file.add(edit);
         file.add(reset);
-        reset.addActionListener(e -> someMethod());
+        reset.addActionListener(e->someMethod() );
         file.add(exit);
+
         mainMenu.add(help);
+
         help.add(somethingElse);
 
-        //add a layout to the main panel 
-        mainPanel.setLayout(new GridLayout(3, 3));
+        //add a layout to the mainPanel
+        mainPanel.setLayout(new GridLayout(3,3));
 
-
-
-        setTitle("CSC205 TicTacToe"); // leave this for the end
+        setTitle("CSC205 Tic Tac Toe"); //leave this for the end
         setSize(500, 500);
         setLocation(100, 100);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-
     }
-
-
-
-
 }
